@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DrawGraphics</string>
+    <string name="x">x2:</string>
+    <string name="y">y2:</string>
+    <string name="drawlinepage">BresenhamLine</string>
+    <string name="drawcirclepage">DrawCircle</string>
+    <string name="make_sure">确认</string>
+    <string name="radius">radius:</string>
+    <string name="draw_line">画线</string>
+    <string name="draw_circle">画圆</string>
+    <string name="draw_square">画正方形</string>
+    <string name="draw_six_star">画六芒星</string>
+    <string name="draw_five_star">画五角星</string>
+</resources>
