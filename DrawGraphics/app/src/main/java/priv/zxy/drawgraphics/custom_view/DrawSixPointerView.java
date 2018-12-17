@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import priv.zxy.drawgraphics.graphgics_bean.Dot;
@@ -19,8 +20,12 @@ import priv.zxy.drawgraphics.graphgics_bean.SixPointerStar;
  **/
 public class DrawSixPointerView extends View {
 
+    private static final String TAG = "DrawSixPointerView";
+
     private SixPointerStar sixPointerStar;
+
     private Paint paint;
+
     private int color = Color.BLACK;
 
     public DrawSixPointerView(Context context) {
@@ -36,6 +41,16 @@ public class DrawSixPointerView extends View {
     public DrawSixPointerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
+    }
+
+    public void setSquareDx(int dx){
+        sixPointerStar.setCenter(dx, sixPointerStar.getCenter().getDy());
+        invalidate();
+    }
+
+    public void setSquareDy(int dy){
+        sixPointerStar.setCenter(sixPointerStar.getCenter().getDx(), dy);
+        invalidate();
     }
 
     private void initView(){
@@ -59,6 +74,11 @@ public class DrawSixPointerView extends View {
         invalidate();
     }
 
+    /**
+     * 实际测试发现:
+     * onDraw并不是没帧都调用的，为了节省，只有在界面发生变化的时候，才会调用onDraw函数
+     * @param canvas 画布
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -69,12 +89,19 @@ public class DrawSixPointerView extends View {
         Dot center = sixPointerStar.getCenter();
         int halfSideLength = sixPointerStar.getSideLength() / 2;
 
-        Dot left_up = new Dot(center.getDx()-halfSideLength, center.getDy()+(int)Math.sqrt(3)*halfSideLength);
-        Dot right_up = new Dot(center.getDx()+halfSideLength, center.getDy()+(int)Math.sqrt(3)*halfSideLength);
-        Dot left_down = new Dot(center.getDx()-halfSideLength, center.getDy()-(int)Math.sqrt(3)*halfSideLength);
-        Dot right_down = new Dot(center.getDx()+halfSideLength, center.getDy()-(int)Math.sqrt(3)*halfSideLength);
+        Dot left_up = new Dot(center.getDx()-halfSideLength, center.getDy()+(int)(Math.sqrt(3)*halfSideLength));
+        Dot right_up = new Dot(center.getDx()+halfSideLength, center.getDy()+(int)(Math.sqrt(3)*halfSideLength));
+        Dot left_down = new Dot(center.getDx()-halfSideLength, center.getDy()-(int)(Math.sqrt(3)*halfSideLength));
+        Dot right_down = new Dot(center.getDx()+halfSideLength, center.getDy()-(int)(Math.sqrt(3)*halfSideLength));
         Dot left = new Dot(center.getDx()-sixPointerStar.getSideLength(), center.getDy());
         Dot right = new Dot(center.getDx()+sixPointerStar.getSideLength(), center.getDy());
+        Log.d(TAG, "中点:(" + center.getDx() + "," + center.getDy() + ")");
+        Log.d(TAG, "左上:(" + left_up.getDx() + "," + left_up.getDy() + ")");
+        Log.d(TAG, "右上:(" + right_up.getDx() + "," + right_up.getDy() + ")");
+        Log.d(TAG, "右:(" + right.getDx() + "," + right.getDy() + ")");
+        Log.d(TAG, "右下:(" + right_down.getDx() + "," + right_down.getDy() + ")");
+        Log.d(TAG, "左下:(" + left_down.getDx() + "," + left_down.getDy() + ")");
+        Log.d(TAG, "左:(" + left.getDx() + "," + left.getDy() + ")");
         Path path = new Path();
         path.moveTo(left_up.getDx(), left_up.getDy());
         path.lineTo(right_up.getDx(), right_up.getDy());

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 
 import priv.zxy.drawgraphics.R;
-import priv.zxy.drawgraphics.custom_view.SquareView;
+import priv.zxy.drawgraphics.custom_view.DrawSquareView;
 
 /**
  * 创建人: Administrator
@@ -27,9 +27,15 @@ public class Fragment3 extends Fragment {
 
     private View view;
 
-    private SquareView squareView;
+    private DrawSquareView drawSquareView;
 
-    private SeekBar seekBar;
+    private SeekBar scaleBar;
+
+    private SeekBar shiftBar;
+
+    private SeekBar lengthwaysMoveBar;
+
+    private SeekBar skewBar;
 
     /**
      * 分别记录上次两点的触碰记录
@@ -64,9 +70,15 @@ public class Fragment3 extends Fragment {
     }
 
     private void initView(){
-        squareView = view.findViewById(R.id.squareView);
+        drawSquareView = view.findViewById(R.id.squareView);
 
-        seekBar = view.findViewById(R.id.seekBar);
+        scaleBar = view.findViewById(R.id.scaleBar);
+
+        shiftBar = view.findViewById(R.id.shiftMoveBar);
+
+        lengthwaysMoveBar = view.findViewById(R.id.lengthwaysMoveBar);
+
+        skewBar = view.findViewById(R.id.skewBar);
     }
 
     /**
@@ -76,19 +88,11 @@ public class Fragment3 extends Fragment {
     @SuppressLint("ClickableViewAccessibility")
     private void initEvent(){
         //控制正方形的位置
-        squareView.setOnTouchListener(new View.OnTouchListener() {
+        drawSquareView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int pointerCount = event.getPointerCount();//得到触碰点的个数(手指个数)
-                if (pointerCount == 1)
-                    switch (event.getAction()){
-                        case MotionEvent.ACTION_DOWN  :
-                            int dx = (int)event.getX();
-                            int dy = (int)event.getY();
-                            squareView.setSquareCenter(dx, dy);
-                            break;
-                    }
-                else if (pointerCount == 2){
+                if (pointerCount == 2){
                     int finger1Dx = (int)event.getX(0);
                     int finger1Dy = (int)event.getY(0);
                     int finger2Dx = (int)event.getX(1);
@@ -100,7 +104,7 @@ public class Fragment3 extends Fragment {
                         case MotionEvent.ACTION_MOVE:
                             if (k1 != 0 && k2 != 0){
                                 float degree = (float)Math.toDegrees(Math.atan((k1-k2)/(1+k1*k2)));
-                                squareView.setRotation(degree);
+                                drawSquareView.setRotation(degree);
                             }
                             break;
                         case MotionEvent.ACTION_UP:
@@ -120,10 +124,61 @@ public class Fragment3 extends Fragment {
 
 
         //控制正方形的缩放大小
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        scaleBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                squareView.setSquareSideLength(10 * progress);
+                drawSquareView.setSquareSideLength(10 * progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        //控制正方形的平移
+        shiftBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                drawSquareView.setSquareDx(15* progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        lengthwaysMoveBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                drawSquareView.setSquareDy(17*progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        skewBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             }
 
             @Override

@@ -56,6 +56,16 @@ public class DrawFivePointerView extends View {
         invalidate();
     }
 
+    public void setFivePointerStarSideDx(int dx){
+        fivePointerStar.setCenter(dx, fivePointerStar.getCenter().getDy());
+        invalidate();
+    }
+
+    public void setFivePointerStarSideDy(int dy){
+        fivePointerStar.setCenter(fivePointerStar.getCenter().getDx(), dy);
+        invalidate();
+    }
+
     public void setFivePointerStarCenter(int dx, int dy){
         fivePointerStar.setCenter(dx, dy);
         invalidate();

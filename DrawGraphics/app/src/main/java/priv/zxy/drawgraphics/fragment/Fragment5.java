@@ -23,8 +23,12 @@ import priv.zxy.drawgraphics.custom_view.DrawFivePointerView;
 public class Fragment5 extends Fragment {
 
     private View view;
-    
-    private SeekBar seekBar;
+
+    private SeekBar scaleBar;
+
+    private SeekBar shiftBar;
+
+    private SeekBar lengthwaysMoveBar;
     
     private DrawFivePointerView fivePointerView;
 
@@ -55,7 +59,12 @@ public class Fragment5 extends Fragment {
 
     private void initView(){
         fivePointerView = view.findViewById(R.id.fivePointerView);
-        seekBar = view.findViewById(R.id.seekBar);
+
+        scaleBar = view.findViewById(R.id.scaleBar);
+
+        shiftBar = view.findViewById(R.id.shiftMoveBar);
+
+        lengthwaysMoveBar = view.findViewById(R.id.lengthwaysMoveBar);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -65,15 +74,7 @@ public class Fragment5 extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int pointerCount = event.getPointerCount();//得到触碰点的个数(手指个数)
-                if (pointerCount == 1)
-                    switch (event.getAction()){
-                        case MotionEvent.ACTION_DOWN  :
-                            int dx = (int)event.getX();
-                            int dy = (int)event.getY();
-                            fivePointerView.setFivePointerStarCenter(dx, dy);
-                            break;
-                    }
-                else if (pointerCount == 2){
+                if (pointerCount == 2){
                     int finger1Dx = (int)event.getX(0);
                     int finger1Dy = (int)event.getY(0);
                     int finger2Dx = (int)event.getX(1);
@@ -105,10 +106,45 @@ public class Fragment5 extends Fragment {
 
 
         //控制五角星的缩放大小
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        scaleBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 fivePointerView.setFivePointerStarSideRadius(10 * progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        //控制正方形的平移
+        shiftBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                fivePointerView.setFivePointerStarSideDx(15* progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        lengthwaysMoveBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                fivePointerView.setFivePointerStarSideDy(17*progress);
             }
 
             @Override
