@@ -28,6 +28,8 @@ public class DrawSquareView extends View {
 
     private int color = Color.BLACK;
 
+    private float k = 0.0f;
+
     public DrawSquareView(Context context) {
         super(context);
         initView();
@@ -93,14 +95,23 @@ public class DrawSquareView extends View {
         /**
          * 画线其实可以用PresenhamLine算法封装成函数后实现，这里为了方便起见直接调用canvase的drawLine函数
          */
-        path.moveTo(left_up.getDx(), left_up.getDy());
-        path.lineTo(right_up.getDx(), right_up.getDy());
-        path.lineTo(right_down.getDx(), right_down.getDy());
-        path.lineTo(left_down.getDx(), left_down.getDy());
-        path.lineTo(left_up.getDx(), left_up.getDy());
+        path.moveTo(left_up.getDx() + k*left_up.getDy(), left_up.getDy() + k*left_up.getDx());
+        path.lineTo(right_up.getDx()+ k*left_up.getDy(), right_up.getDy() + k*right_up.getDx());
+        path.lineTo(right_down.getDx()+ k*left_up.getDy(), right_down.getDy() + k*right_down.getDx());
+        path.lineTo(left_down.getDx()+ k*left_up.getDy(), left_down.getDy() + k*left_down.getDx());
+        path.lineTo(left_up.getDx()+ k*left_up.getDy(), left_up.getDy() + k*left_up.getDx());
         /**
          * 对于填充而言，我们可以使用填充算法，但是我这里直接使用canvas的画正方形来进行填充
          */
         canvas.drawPath(path, paint);
+    }
+
+    /**
+     * 错切：水平和垂直同时错切
+     * @param k 水平方向和垂直方向的斜率
+     */
+    public void setSkew(float k){
+        this.k = k;
+        invalidate();
     }
 }

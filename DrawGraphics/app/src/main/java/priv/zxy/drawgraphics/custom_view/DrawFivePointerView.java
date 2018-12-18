@@ -23,6 +23,7 @@ public class DrawFivePointerView extends View {
     private FivePointerStar fivePointerStar;
     private Paint paint;
     private int color = Color.BLACK;
+    private float k = 0.0f;
 
     public DrawFivePointerView(Context context) {
         super(context);
@@ -89,11 +90,19 @@ public class DrawFivePointerView extends View {
         Dot C = new Dot(x+(int)(R*Math.cos(54)), y-(int)(R*Math.sin(54)));
         Dot D = new Dot(x-(int)(R*Math.cos(54)), y-(int)(R*Math.sin(54)));
         Dot E = new Dot(x-(int)(R*Math.cos(18)), y+(int)(R*Math.sin(18)));
-        canvas.drawLine(A.getDx(), A.getDy(), B.getDx(), B.getDy(), paint);
-        canvas.drawLine(B.getDx(), B.getDy(), C.getDx(), C.getDy(), paint);
-        canvas.drawLine(C.getDx(), C.getDy(), D.getDx(), D.getDy(), paint);
-        canvas.drawLine(D.getDx(), D.getDy(), E.getDx(), E.getDy(), paint);
-        canvas.drawLine(E.getDx(), E.getDy(), A.getDx(), A.getDy(), paint);
+        canvas.drawLine(A.getDx() + k*A.getDy(), A.getDy() + k*A.getDx(), B.getDx() + k*B.getDy(), B.getDy() + k*B.getDx(), paint);
+        canvas.drawLine(B.getDx() + k*B.getDy(), B.getDy() + k*B.getDx(), C.getDx() + k*C.getDy(), C.getDy() + k*C.getDx(), paint);
+        canvas.drawLine(C.getDx() + k*C.getDy(), C.getDy() + k*C.getDx(), D.getDx() + k*D.getDy(), D.getDy() + k*D.getDx(), paint);
+        canvas.drawLine(D.getDx() + k*D.getDy(), D.getDy() + k*D.getDx(), E.getDx() + k*E.getDy(), E.getDy() + k*E.getDx(), paint);
+        canvas.drawLine(E.getDx() + k*E.getDy(), E.getDy() + k*E.getDx(), A.getDx() + k*A.getDy(), A.getDy() + k*A.getDx(), paint);
     }
 
+    /**
+     * 错切：水平和垂直同时错切
+     * @param k 水平方向和垂直方向的斜率
+     */
+    public void setSkew(float k){
+        this.k = k;
+        invalidate();
+    }
 }

@@ -77,4 +77,28 @@
         android:progressDrawable="@drawable/sb_bar"
         android:thumb="@drawable/sb_thumb"
         app:layout_constraintBottom_toTopOf="@id/scaleTextView"/>
+
+    <TextView
+        android:id="@+id/skewTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="错切"
+        android:textColor="#000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/scaleBar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <SeekBar
+        android:id="@+id/skewBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="5.0dp"
+        android:minHeight="5.0dp"
+        android:background="#000"
+        android:progressDrawable="@drawable/sb_bar"
+        android:thumb="@drawable/sb_thumb"
+        app:layout_constraintBottom_toTopOf="@id/skewTextView"/>
 </android.support.constraint.ConstraintLayout>

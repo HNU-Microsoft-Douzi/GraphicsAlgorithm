@@ -28,6 +28,8 @@ public class DrawSixPointerView extends View {
 
     private int color = Color.BLACK;
 
+    private float k = 0.0f;
+
     public DrawSixPointerView(Context context) {
         super(context);
         initView();
@@ -95,22 +97,24 @@ public class DrawSixPointerView extends View {
         Dot right_down = new Dot(center.getDx()+halfSideLength, center.getDy()-(int)(Math.sqrt(3)*halfSideLength));
         Dot left = new Dot(center.getDx()-sixPointerStar.getSideLength(), center.getDy());
         Dot right = new Dot(center.getDx()+sixPointerStar.getSideLength(), center.getDy());
-        Log.d(TAG, "中点:(" + center.getDx() + "," + center.getDy() + ")");
-        Log.d(TAG, "左上:(" + left_up.getDx() + "," + left_up.getDy() + ")");
-        Log.d(TAG, "右上:(" + right_up.getDx() + "," + right_up.getDy() + ")");
-        Log.d(TAG, "右:(" + right.getDx() + "," + right.getDy() + ")");
-        Log.d(TAG, "右下:(" + right_down.getDx() + "," + right_down.getDy() + ")");
-        Log.d(TAG, "左下:(" + left_down.getDx() + "," + left_down.getDy() + ")");
-        Log.d(TAG, "左:(" + left.getDx() + "," + left.getDy() + ")");
         Path path = new Path();
-        path.moveTo(left_up.getDx(), left_up.getDy());
-        path.lineTo(right_up.getDx(), right_up.getDy());
-        path.lineTo(right.getDx(), right.getDy());
-        path.lineTo(right_down.getDx(), right_down.getDy());
-        path.lineTo(left_down.getDx(), left_down.getDy());
-        path.lineTo(left.getDx(), left.getDy());
-        path.lineTo(left_up.getDx(), left_up.getDy());
+        path.moveTo(left_up.getDx() + k*left_up.getDy(), left_up.getDy() + k*left_up.getDx());
+        path.lineTo(right_up.getDx() + k*right_up.getDy(), right_up.getDy() + k*right_up.getDx());
+        path.lineTo(right.getDx() + k*right.getDy(), right.getDy() + k*right.getDx());
+        path.lineTo(right_down.getDx() + k*right_down.getDy(), right_down.getDy() + k*right_down.getDx());
+        path.lineTo(left_down.getDx() + k*left_down.getDy(), left_down.getDy() + k*left_down.getDx());
+        path.lineTo(left.getDx() + k*left.getDy(), left.getDy() + k*left.getDx());
+        path.lineTo(left_up.getDx() + k*left_up.getDy(), left_up.getDy() + k*left_up.getDx());
         canvas.drawPath(path, paint);
+    }
+
+    /**
+     * 错切：水平和垂直同时错切
+     * @param k 水平方向和垂直方向的斜率
+     */
+    public void setSkew(float k){
+        this.k = k;
+        invalidate();
     }
 
 }

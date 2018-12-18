@@ -179,6 +179,8 @@ public class Fragment3 extends Fragment {
         skewBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float k = (float)progress / 100.0f;
+                drawSquareView.setSkew(k);
             }
 
             @Override

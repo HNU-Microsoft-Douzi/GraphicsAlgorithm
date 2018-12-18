@@ -32,6 +32,7 @@ public class Fragment4 extends Fragment {
 
     private SeekBar lengthwaysMoveBar;
 
+    private SeekBar skewBar;
 
     /**
      * 分别记录上次两点的触碰记录
@@ -66,6 +67,8 @@ public class Fragment4 extends Fragment {
         shiftBar = view.findViewById(R.id.shiftMoveBar);
 
         lengthwaysMoveBar = view.findViewById(R.id.lengthwaysMoveBar);
+
+        skewBar = view.findViewById(R.id.skewBar);
     }
 
     /**
@@ -150,6 +153,24 @@ public class Fragment4 extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 sixPointerView.setSquareDy(17*progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        skewBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float k = (float)progress / 100.0f;
+                sixPointerView.setSkew(k);
             }
 
             @Override
