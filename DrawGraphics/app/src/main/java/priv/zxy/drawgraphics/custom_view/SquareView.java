@@ -23,7 +23,7 @@ public class SquareView extends View {
 
     private Square square;
     private Paint paint;
-    private int color = Color.BLACK;
+    private int color = Color.WHITE;
     public SquareView(Context context) {
         super(context);
         initView();

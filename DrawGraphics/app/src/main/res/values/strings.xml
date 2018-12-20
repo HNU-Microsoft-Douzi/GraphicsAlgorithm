@@ -6,9 +6,9 @@
     <string name="drawcirclepage">DrawCircle</string>
     <string name="make_sure">确认</string>
     <string name="radius">radius:</string>
-    <string name="draw_line">画线</string>
-    <string name="draw_circle">画圆</string>
-    <string name="draw_square">画正方形</string>
-    <string name="draw_six_star">画六芒星</string>
-    <string name="draw_five_star">画五角星</string>
+    <string name="draw_line">线</string>
+    <string name="draw_circle">圆</string>
+    <string name="draw_square">方</string>
+    <string name="draw_six_star">六星</string>
+    <string name="draw_five_star">五星</string>
 </resources>

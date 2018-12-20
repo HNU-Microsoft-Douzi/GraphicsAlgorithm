@@ -26,7 +26,7 @@ public class DrawSquareView extends View {
 
     private Paint paint;
 
-    private int color = Color.BLACK;
+    private int color = Color.WHITE;
 
     private float k = 0.0f;
 

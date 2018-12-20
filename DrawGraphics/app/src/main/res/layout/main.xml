@@ -13,34 +13,71 @@
     <RadioGroup
         android:id="@+id/rg_rab_bar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#fff"
+        android:layout_height="42dp"
+        android:background="#313131"
         android:orientation="horizontal"
+        android:paddingTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent">
+
         <RadioButton
             android:id="@+id/rb_channel1"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_channel1_bg"
-            android:text="@string/draw_line"/>
+            android:drawableLeft="@mipmap/line"
+            android:drawableStart="@mipmap/line"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:text="@string/draw_line"
+            android:fontFamily="@font/fontfamily1"
+            android:textColor="#fff"
+            android:background="@drawable/bg"/>
         <RadioButton
             android:id="@+id/rb_channel2"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_channel2_bg"
-            android:text="@string/draw_circle"/>
+            android:drawableLeft="@mipmap/round"
+            android:drawableStart="@mipmap/round"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="@font/fontfamily1"
+            android:text="@string/draw_circle"
+            android:textColor="#fff"
+            android:background="@drawable/bg"/>
         <RadioButton
             android:id="@+id/rb_channel3"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_channel3_bg"
-            android:text="@string/draw_square"/>
+            android:drawableLeft="@mipmap/square"
+            android:drawableStart="@mipmap/square"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="@font/fontfamily1"
+            android:text="@string/draw_square"
+            android:textColor="#fff"
+            android:background="@drawable/bg"/>
         <RadioButton
             android:id="@+id/rb_channel4"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_channel4_bg"
-            android:text="@string/draw_six_star"/>
+            android:drawableLeft="@mipmap/six_star"
+            android:drawableStart="@mipmap/six_star"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="@font/fontfamily1"
+            android:text="@string/draw_six_star"
+            android:textColor="#fff"
+            android:background="@drawable/bg"/>
         <RadioButton
             android:id="@+id/rb_channel5"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/tab_channel5_bg"
-            android:text="@string/draw_five_star"/>
+            android:drawableLeft="@mipmap/five_star"
+            android:drawableStart="@mipmap/five_star"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:text="@string/draw_five_star"
+            android:textColor="#fff"
+            android:background="@drawable/bg"/>
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>
