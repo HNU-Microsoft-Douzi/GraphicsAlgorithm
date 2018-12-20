@@ -66,3 +66,11 @@
 点击彩色圆盘的时候，生成一个dialog显示在界面上，注意Dialog依附于Activity而存在，所以传递getContext()的时候，就传递getActivity()方法即可。
 
 ![](https://i.imgur.com/ofngM8T.png)
+
+#### 版本控制
+该项目使用Git作为版本控制工具。
+
+#### 作者
+作者：zxy
+
+或许在不久的未来，您可以在贡献者名单中看到所有参与该项目的开发者。
