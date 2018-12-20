@@ -17,8 +17,8 @@
 
     <priv.zxy.drawgraphics.custom_view.DrawCircleView
         android:id="@+id/drawCirclePage"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_width="370dp"
+        android:layout_height="370dp"
         android:background="#313131"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
