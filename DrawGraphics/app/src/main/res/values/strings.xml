@@ -2,7 +2,7 @@
     <string name="app_name">DrawGraphics</string>
     <string name="x">x2:</string>
     <string name="y">y2:</string>
-    <string name="drawlinepage">BresenhamLine</string>
+    <string name="drawlinepage">PresenhamLine</string>
     <string name="drawcirclepage">DrawCircle</string>
     <string name="make_sure">确认</string>
     <string name="radius">radius:</string>

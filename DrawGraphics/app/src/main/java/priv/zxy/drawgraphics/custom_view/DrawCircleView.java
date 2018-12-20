@@ -44,10 +44,15 @@ public class DrawCircleView extends View {
         this.y = (int)y;
     }
 
+    public void setColor(int c){
+        color = c;
+        invalidate();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawCoordinateAxis(canvas, color);
+        drawCoordinateAxis(canvas, Color.WHITE);
         drawCircle(radius, canvas, color);
     }
 

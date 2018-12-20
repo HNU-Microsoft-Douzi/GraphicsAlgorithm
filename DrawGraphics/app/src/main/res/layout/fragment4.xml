@@ -28,6 +28,7 @@
         android:text="纵移"
         android:textColor="#fff"
         android:textSize="20sp"
+        android:fontFamily="@font/fontfamily4"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -48,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="平移"
+        android:fontFamily="@font/fontfamily4"
         android:textColor="#fff"
         android:textSize="20sp"
         android:gravity="center"
@@ -71,6 +73,7 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="缩放"
+        android:fontFamily="@font/fontfamily4"
         android:textColor="#fff"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/shiftMoveBar"
@@ -95,6 +98,7 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="错切"
+        android:fontFamily="@font/fontfamily4"
         android:textColor="#fff"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/scaleBar"

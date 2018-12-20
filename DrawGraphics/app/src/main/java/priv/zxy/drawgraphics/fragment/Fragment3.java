@@ -1,17 +1,27 @@
 package priv.zxy.drawgraphics.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.OnColorSelectedListener;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+
+import priv.zxy.drawgraphics.MyApplication;
 import priv.zxy.drawgraphics.R;
 import priv.zxy.drawgraphics.custom_view.DrawSquareView;
 
@@ -36,6 +46,10 @@ public class Fragment3 extends Fragment {
     private SeekBar lengthwaysMoveBar;
 
     private SeekBar skewBar;
+
+    private Button choose;
+
+    private AlertDialog colorDialog;
 
     /**
      * 分别记录上次两点的触碰记录
@@ -79,6 +93,38 @@ public class Fragment3 extends Fragment {
         lengthwaysMoveBar = view.findViewById(R.id.lengthwaysMoveBar);
 
         skewBar = view.findViewById(R.id.skewBar);
+
+        choose = view.findViewById(R.id.chooseBt);
+
+        colorDialog= ColorPickerDialogBuilder
+                .with(getActivity())
+                .setTitle("Choose color")//标题
+                //初始样式，这里要同时要设置透明度默认是透明度最大
+                .initialColor(R.color.deepGray)
+                //设置是圆形还是花型
+                .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                //.wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
+                .density(10)//设置密集度值越大，越密集
+                //设置监听事件
+                .setOnColorSelectedListener(new OnColorSelectedListener() {
+                    @Override
+                    public void onColorSelected(int selectedColor) {
+                        Toast.makeText(Fragment3.this.getActivity(),"onColorSelected: 0x" + Integer.toHexString(selectedColor),Toast.LENGTH_LONG).show();
+                    }
+                })
+                //确定和取消按钮，这里没有颜色设置的选项，但是可以修改源码
+                .setPositiveButton("ok", new ColorPickerClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                        drawSquareView.setColor(selectedColor);
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .build();
     }
 
     /**
@@ -191,6 +237,13 @@ public class Fragment3 extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colorDialog.show();
             }
         });
     }

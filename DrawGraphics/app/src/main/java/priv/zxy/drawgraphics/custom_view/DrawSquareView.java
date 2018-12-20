@@ -61,6 +61,11 @@ public class DrawSquareView extends View {
         invalidate();
     }
 
+    public void setColor(int color){
+        paint.setColor(color);
+        invalidate();
+    }
+
     public void setSquareDx(int dx){
         square.setCenter(dx, square.getCenter().getDy());
         invalidate();

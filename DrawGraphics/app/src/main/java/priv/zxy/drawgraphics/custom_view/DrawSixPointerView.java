@@ -55,6 +55,11 @@ public class DrawSixPointerView extends View {
         invalidate();
     }
 
+    public void setColor(int c){
+        paint.setColor(c);
+        invalidate();
+    }
+
     private void initView(){
         sixPointerStar = new SixPointerStar();
         sixPointerStar.setSideLength(20);//设置正六芒星的初始化边长

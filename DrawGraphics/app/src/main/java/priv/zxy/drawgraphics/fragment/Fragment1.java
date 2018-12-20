@@ -1,8 +1,9 @@
 package priv.zxy.drawgraphics.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,42 +28,13 @@ import priv.zxy.drawgraphics.R;
 import priv.zxy.drawgraphics.custom_view.PresenhamLine;
 
 public class Fragment1 extends Fragment {
+
     private PresenhamLine drawLine;
     private TextView getX;
     private TextView getY;
     private View view;
     private Button choose;
-
-    AlertDialog colorDialog= ColorPickerDialogBuilder
-            .with(this.getContext())
-            .setTitle("Choose color")//标题
-            //初始样式，这里要同时要设置透明度默认是透明度最大
-            .initialColor(R.color.deepGray)
-            //设置是圆形还是花型
-            .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-            //.wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
-            .density(10)//设置密集度值越大，越密集
-            //设置监听事件
-            .setOnColorSelectedListener(new OnColorSelectedListener() {
-                @Override
-                public void onColorSelected(int selectedColor) {
-                    Toast.makeText(Fragment1.this.getActivity(),"onColorSelected: 0x" + Integer.toHexString(selectedColor),Toast.LENGTH_LONG).show();
-                }
-            })
-            //确定和取消按钮，这里没有颜色设置的选项，但是可以修改源码
-            .setPositiveButton("ok", new ColorPickerClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-                    //颜色选中后需要做的事情
-                    //    changeBackgroundColor(selectedColor);
-                }
-            })
-            .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            })
-            .build();
+    private AlertDialog colorDialog;
 
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
@@ -88,8 +60,8 @@ public class Fragment1 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView();
 
+        initView();
         initEvent();
     }
 
@@ -98,6 +70,38 @@ public class Fragment1 extends Fragment {
         getX = view.findViewById(R.id.getX);
         getY = view.findViewById(R.id.getY);
         choose = view.findViewById(R.id.chooseBt);
+
+        colorDialog= ColorPickerDialogBuilder
+                .with(getActivity())
+                .setTitle("Choose color")//标题
+                //初始样式，这里要同时要设置透明度默认是透明度最大
+                .initialColor(R.color.deepGray)
+                //设置是圆形还是花型
+                .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                //.wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
+                .density(10)//设置密集度值越大，越密集
+                //设置监听事件
+                .setOnColorSelectedListener(new OnColorSelectedListener() {
+                    @Override
+                    public void onColorSelected(int selectedColor) {
+                        Toast.makeText(Fragment1.this.getActivity(),"onColorSelected: 0x" + Integer.toHexString(selectedColor),Toast.LENGTH_LONG).show();
+                    }
+                })
+                //确定和取消按钮，这里没有颜色设置的选项，但是可以修改源码
+                .setPositiveButton("ok", new ColorPickerClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                        //颜色选中后需要做的事情
+                        //    changeBackgroundColor(selectedColor);
+                        drawLine.setColor(selectedColor);
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .build();
     }
 
     @SuppressLint("ClickableViewAccessibility")

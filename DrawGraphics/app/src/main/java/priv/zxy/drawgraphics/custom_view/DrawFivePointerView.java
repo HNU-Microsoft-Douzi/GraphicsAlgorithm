@@ -21,8 +21,11 @@ import priv.zxy.drawgraphics.graphgics_bean.FivePointerStar;
 public class DrawFivePointerView extends View {
 
     private FivePointerStar fivePointerStar;
+
     private Paint paint;
-    private int color = Color.BLACK;
+
+    private int color = Color.WHITE;
+
     private float k = 0.0f;
 
     public DrawFivePointerView(Context context) {
@@ -50,6 +53,11 @@ public class DrawFivePointerView extends View {
         paint.setStyle(Paint.Style.FILL_AND_STROKE);//设置画笔的属性:STROKE为线条,FILL为填充，FILL_AND_STROKE为线条+填充
         paint.setColor(color);//颜色
 
+    }
+
+    public void setColor(int c){
+        paint.setColor(c);
+        invalidate();
     }
 
     public void setFivePointerStarSideRadius(int length){

@@ -16,6 +16,7 @@ public class PresenhamLine extends View {
     private int y2;
     private int width = 0;
     private int height = 0;
+    private static int colorLine = Color.WHITE;
 
     public PresenhamLine(Context context) {
         super(context);
@@ -39,6 +40,11 @@ public class PresenhamLine extends View {
         setY1(y1);
         setX2(x2);
         setY2(y2);
+        invalidate();
+    }
+
+    public void setColor(int color){
+        colorLine = color;
         invalidate();
     }
 
@@ -131,32 +137,13 @@ public class PresenhamLine extends View {
         drawCoordinateAxis(canvas, Color.WHITE);
         @SuppressLint("DrawAllocation") Paint paint = new Paint();
         paint.setStrokeWidth(2);
-        paint.setColor(Color.WHITE);
+        paint.setColor(colorLine);
         paint.setStrokeCap(Paint.Cap.SQUARE);//点的形状为正方形
 //        canvas.drawPoint(100,100, paint);
         BresenhamLine(canvas, paint, x1, y1, x2, y2);
 
     }
 
-    //    private void drawCoordinateAxis(Canvas canvas){
-//        @SuppressLint("DrawAllocation") Paint paint_line = new Paint(Paint.ANTI_ALIAS_FLAG);//抗锯齿
-//        paint_line.setStyle(Paint.Style.STROKE);
-//        paint_line.setStrokeWidth(3);
-//        paint_line.setColor(Color.BLACK);
-//        canvas.drawLine(0, height, getWidth(), height, paint_line);
-//        canvas.drawLine(getWidth() - 35, height - 20, getWidth(), height, paint_line);
-//        canvas.drawLine(getWidth() - 35, height + 20, getWidth(), height, paint_line);
-//        canvas.drawLine(width - 20, getHeight() - 35, width, getHeight(), paint_line);
-//        canvas.drawLine(width + 20, getHeight() - 35, width, getHeight(), paint_line);
-//        canvas.drawLine(width, 0, width, getHeight(), paint_line);
-//
-//        Paint paint_text = new Paint();
-//        paint_text.setColor(Color.BLACK);
-//        paint_text.setStrokeWidth(3);
-//        paint_text.setTextSize(60);
-//        canvas.drawText("x", getWidth()-50, height+50, paint_text);
-//        canvas.drawText("y", width + 25, getHeight() - 50, paint_text);
-//    }
     private void drawCoordinateAxis(Canvas canvas, int color) {
         width = getWidth() / 2;
         height = getHeight() / 2;

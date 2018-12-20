@@ -30,6 +30,7 @@
         android:textColor="#fff"
         android:textSize="20sp"
         android:gravity="center"
+        android:fontFamily="@font/fontfamily4"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <SeekBar
@@ -52,6 +53,7 @@
         android:textColor="#fff"
         android:textSize="20sp"
         android:gravity="center"
+        android:fontFamily="@font/fontfamily4"
         app:layout_constraintBottom_toTopOf="@+id/lengthwaysMoveBar"/>
 
     <SeekBar
@@ -74,6 +76,7 @@
         android:text="缩放"
         android:textColor="#fff"
         android:textSize="20sp"
+        android:fontFamily="@font/fontfamily4"
         tools:layout_editor_absoluteX="0dp"
         app:layout_constraintBottom_toTopOf="@+id/shiftMoveBar"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -99,6 +102,7 @@
         android:text="错切"
         android:textColor="#fff"
         android:textSize="20sp"
+        android:fontFamily="@font/fontfamily4"
         tools:layout_editor_absoluteX="0dp"
         app:layout_constraintBottom_toTopOf="@+id/scaleBar"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -113,5 +117,6 @@
         android:background="#000"
         android:progressDrawable="@drawable/sb_bar"
         android:thumb="@drawable/sb_thumb"
+        android:fontFamily="@font/fontfamily4"
         app:layout_constraintBottom_toTopOf="@id/skewTextView"/>
 </android.support.constraint.ConstraintLayout>
